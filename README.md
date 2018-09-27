@@ -3,20 +3,40 @@
 > A transform stream that applies backpressure based on a check function.
 
 ## Purpose
-- What problem does this module solve? At least a few sentences.
-PLEASE_FILL_IN_HERE
+Creates a pass through stream where backpressure is governed by the provided
+`check()` function.
 
 ## Usage
 
 ```js
-// Several examples of usage.
-// Usually copying and pasting code from the tests and making the code standalone suffices.
-// PLEASE_FILL_IN_HERE
+const fs = require('fs');
+
+function check () {
+  return new Promise((resolve) => {
+    setTimeout(500, resolve);
+  });
+}
+
+const readable = fs.createReadStream('myfile');
+const writable = fs.createWriteStream('other');
+
+const transform = require('transform-stream-backpressure')(myfunc, { objectMode: true, highWaterMark: 20 });
+readable.pipe(transform).pipe(writable);
+
 ```
 
 ## API
 
-PLEASE_FILL_IN_HERE
+<a name="module_Creates a transform stream with backpressure governed by the check_new function."></a>
+
+## Creates a transform stream with backpressure governed by the check() function. ⇒ <code>Transform</code>
+**Returns**: <code>Transform</code> - A transform stream.
+
+| Param | Type | Description |
+| --- | --- | --- |
+| check | <code>function</code> | function that returns a promise. If it resolves to truthy, chunk is passed through. |
+| config | <code>object</code> | general stream config passed to new Transform(). |
+
 
 Note: To regenerate this section from the jsdoc run `npm run docs` and paste
 the output above.
