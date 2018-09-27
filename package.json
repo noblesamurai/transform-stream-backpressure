@@ -1,7 +1,7 @@
 {
   "name": "transform-stream-backpressure",
   "description": "A transform stream that applies backpressure based on a check function.",
-  "version": "0.0.1",
+  "version": "0.0.2-0",
   "author": "Tim Allen <tim@noblesamurai.com>",
   "license": "BSD",
   "main": "index.js",
