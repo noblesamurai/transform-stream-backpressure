@@ -11,9 +11,9 @@ describe('transform-stream-backpressure', function () {
       expect(chunk.toString()).to.equal('nerf');
       done();
     });
-    stream.write('nerf');
     stream.on('error', done);
-    stream.destroy();
+    stream.write('nerf');
+    stream.end();
   });
 
   it('provides backpressure', function () {
